@@ -1,0 +1,18 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\Users\\Dalmo\\Desktop\\mesttra\\postgresql-42.2.20.jar"
+  ],
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "pgdocker",
+      "database": "desafio",
+      "username": "postgres",
+      "password": "12345678"
+    }
+  ]
+}

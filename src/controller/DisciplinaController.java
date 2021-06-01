@@ -5,6 +5,7 @@ import models.DisciplinaModel;
 import utils.Terminal;
 
 public class DisciplinaController {
+  
   public static void cadastrar(Disciplina disciplina) {
     var db = new DisciplinaModel();
     db.salvar(disciplina);

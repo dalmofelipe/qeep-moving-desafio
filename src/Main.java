@@ -23,16 +23,14 @@ public class Main {
       Terminal.clearScreen();
       Front.boxTitulo("DESAFIO 01 - GESTÃO DE DISCIPLINAS");
       Front.menuPrincipal();    
-      opcaoNivel01 = teclado.nextInt();
-      teclado.nextLine();
+      opcaoNivel01 = Terminal.getInt(teclado);
       switch(opcaoNivel01) {
         case 1:
           // MENU DE CADASTROS
           while(true) {
             Terminal.clearScreen();
             Front.menuCadastros();
-            opcaoNivel02 = teclado.nextInt();
-            teclado.nextLine();
+            opcaoNivel02 = Terminal.getInt(teclado);
             switch(opcaoNivel02){
               case 1: 
                 // MENU DE CADASTROS DE ALUNOS
@@ -48,8 +46,7 @@ public class Main {
                     case 3: auxEntidade = "Disciplina"; break;
                   }
                   Front.menuCadastrosEntidades(auxEntidade);
-                  opcaoNivel03 = teclado.nextInt();
-                  teclado.nextLine();
+                  opcaoNivel03 = Terminal.getInt(teclado);
                   switch(opcaoNivel03){
                     // cadastrar aluno/professor/disciplina
                     case 1:
@@ -74,16 +71,13 @@ public class Main {
                           inserir no banco de dados e voltar para a lista de opções. Caso o código do professor não existir, 
                           ou já existir uma disciplina com o mesmo nome, apresentar uma mensagem informando o fato.*/
                           System.out.println("Informe o CÓDIGO: ");
-                          auxCodigo = teclado.nextInt();
-                          teclado.nextLine();
+                          auxCodigo = Terminal.getInt(teclado);
                           System.out.println("Informe o NOME: ");
                           auxNome = teclado.nextLine();
                           System.out.println("Informe a CARGA HORÁRIA: ");
-                          auxCargaHoraria = teclado.nextInt();
-                          teclado.nextLine();
+                          auxCargaHoraria = Terminal.getInt(teclado);
                           System.out.println("Informe o CÓDIGO do professor: ");
-                          int auxCodProfessor = teclado.nextInt();
-                          teclado.nextLine();
+                          int auxCodProfessor = Terminal.getInt(teclado);
                           
                           var disciplina = new Disciplina(auxCodigo, auxNome, auxCargaHoraria, auxCodProfessor);
 
@@ -100,8 +94,7 @@ public class Main {
                       Não será permitido a alteração do CPF.*/
                       System.out.println("\n===== Alterar dados do " + auxEntidade + " =====");
                       System.out.println("Infome o codigo: ");
-                      auxCodigo = teclado.nextInt();
-                      teclado.nextLine();
+                      auxCodigo = Terminal.getInt(teclado);
                       System.out.println("Informe o novo nome: ");
                       auxNome = teclado.nextLine();
                       switch(opcaoNivel02) {
@@ -115,8 +108,7 @@ public class Main {
                           dados no banco de dados. Caso, não exista uma disciplina com este código será apresentado uma 
                           mensagem informando o fato e o usuário deverá digitar um enter para voltar para a lista de opções.*/
                           System.out.println("Informe a nova carga horária: ");
-                          auxCargaHoraria = teclado.nextInt();
-                          teclado.nextLine();
+                          auxCargaHoraria = Terminal.getInt(teclado);
                           // TODO: salvar alterações
                           break;
                       }
@@ -164,7 +156,8 @@ public class Main {
           // MENU DE RELATÓRIOS
           System.out.println("Relatórios");
           break;
-        case 4: break;
+        case 4: break; 
+        case 0: break; 
       }
 
 

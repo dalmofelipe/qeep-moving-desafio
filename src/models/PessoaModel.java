@@ -14,7 +14,6 @@ public class PessoaModel extends Model {
       this.pst.setString(1, value);
       this.pst.setMaxRows(1); 
       this.rs = this.pst.executeQuery();
-
       if(rs.next()) {
         int id = this.rs.getInt("id");
         String nome = this.rs.getString("nome");
@@ -22,7 +21,6 @@ public class PessoaModel extends Model {
         // System.out.printf("ID:%d, NOME:%s, CPF:%s", id, nome, cpf);
         pessoa = new Professor(id, nome, cpf);
       }
-      
       this.rs.close();
       this.pst.close();
     } catch (SQLException e) {
@@ -43,7 +41,6 @@ public class PessoaModel extends Model {
       pst.setString(1, pessoa.getNome()); 
       pst.setString(2, pessoa.getCPF()); 
       pst.setBoolean(3, pessoa.isProfessor());
-
       int rowsAffected = pst.executeUpdate();
       if(rowsAffected > 0) {
         System.out.println("Cadastrado com sucesso!");

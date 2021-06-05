@@ -1,8 +1,14 @@
-
+import controller.DisciplinaController;
 
 public class MainDesafio01 {
   public static void main(String[] args) {
     System.out.println("Hello World!");
+
+    if(DisciplinaController.pesquisarID(-6221)) {
+      System.out.println("[TESTE] OK METODO FUNFADO!!");
+    } else {
+      System.out.println("Disciplina não encontrada com ID informado!");
+    }
   }
 }
 

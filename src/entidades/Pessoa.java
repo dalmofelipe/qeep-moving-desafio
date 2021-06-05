@@ -5,10 +5,10 @@ public class Pessoa {
   protected int id;
   protected String nome;
   protected String cpf;
-  static boolean isProfessor;
+  protected boolean isProfessor;
   
   public boolean isProfessor () {
-    return isProfessor;
+    return this.isProfessor;
   }
 
   public int getId() {
@@ -33,10 +33,5 @@ public class Pessoa {
 
   public void setCPF(String cpf) {
     this.cpf = cpf;
-  }
-
-  public static void setProfessor(boolean isProfessor) {
-    Pessoa.isProfessor = isProfessor;
-  }
-  
+  }  
 }

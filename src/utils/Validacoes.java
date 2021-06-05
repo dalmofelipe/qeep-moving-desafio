@@ -2,8 +2,6 @@ package utils;
 
 import java.util.regex.Pattern;
 
-import entidades.Aluno;
-
 public class Validacoes {
   public static void main(String[] args) {
 
@@ -14,9 +12,6 @@ public class Validacoes {
       if(cpfIsValid(cpf)) System.out.println("CPF Válido: "+cpf);
       // if(allDigits(cpf)) System.out.println("Todos são digitos: "+cpf);
     }
-
-    var aluno = new Aluno("Dalmo", "123.456.789-09");
-    System.out.println(aluno);
   }
 
   // aceita se o cpf for preenchido com pontos e traço ou somento números

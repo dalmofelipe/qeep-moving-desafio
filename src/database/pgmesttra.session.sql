@@ -34,6 +34,18 @@ SELECT * FROM pessoas WHERE is_professor = false;
 -- excluir professor sem vinculos 
 DELETE FROM pessoas WHERE cpf = '123.456.789-00' AND is_professor = TRUE;
 
+-- update em ALUNOS!
+UPDATE pessoas 
+SET nome = 'Dalmo Felipe Torres de Paula'
+WHERE id = 8 AND is_professor = FALSE
+
+-- update em PROFESSORES!
+UPDATE pessoas 
+SET nome = 'Dalmo Felipe Torres de Paula'
+WHERE id = 8 AND is_professor = TRUE
+
+
+
 
 
 /*    DISCIPLINAS  12345678900  */
@@ -55,10 +67,27 @@ INSERT INTO disciplinas (id, nome, carga_horaria, id_pessoa) VALUES
 
 SELECT * FROM disciplinas;
 
+-- pesquisar ID 
+SELECT count(*) as "qtd", id 
+FROM disciplinas 
+WHERE id = 11211
+GROUP BY id;
+
 INSERT INTO disciplinas (id, nome, carga_horaria, id_pessoa)
 SELECT 222, 'TESTE2', 50, p.id
 FROM pessoas p
 WHERE p.id = 1 AND p.is_professor = TRUE;
+
+
+-- atualizar disciplina
+UPDATE disciplinas 
+SET nome = 'AOC', carga_horaria = 40, id_pessoa = pessoas.id 
+FROM (SELECT id FROM pessoas WHERE id = 11 AND is_professor = TRUE) AS pessoas
+WHERE disciplinas.id = 99
+
+
+SELECT * FROM disciplinas;
+
 
 
 

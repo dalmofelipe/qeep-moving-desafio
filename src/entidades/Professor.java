@@ -2,16 +2,11 @@ package entidades;
 
 public class Professor extends Pessoa {
 
-  public Professor(String nome, String cpf) {
-    this.nome = nome;
-    this.cpf = cpf;
-    isProfessor = true;
-  }
-  public Professor(int id, String nome, String cpf) {
+  public Professor(Integer id, String nome, String cpf) {
     this.id = id;
     this.nome = nome;
     this.cpf = cpf;
-    isProfessor = true;
+    this.isProfessor = true;
   }
 
   @Override

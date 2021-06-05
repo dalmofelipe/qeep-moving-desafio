@@ -25,11 +25,25 @@ public class PessoaController {
     }
   }
 
-  public static void listar(int opcaoNivel02) {
+  public static void listar(int entidade) {
     var db = new PessoaModel();
-    if(opcaoNivel02 == 1) 
+    if(entidade == 1) 
       db.getAll(false); 
     else db.getAll(true);
+    Terminal.pressEnterToContinue();
+  }
+
+  public static void alterar(Pessoa pessoa) {
+
+    if(pessoa.getId() > 0 && pessoa.getNome().length() > 0) {
+      var db = new PessoaModel();
+      db.update(pessoa);
+    } else {
+      System.out.println("Preencha corretamente os campos ID e Novo Nome!");   
+      System.out.println("ID deve ser um inteiro positivo!");   
+      System.out.println("Novo nome não pode ser vazio!");   
+    }
+
     Terminal.pressEnterToContinue();
   }
 }

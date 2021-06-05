@@ -82,4 +82,29 @@ public class PessoaModel extends Model {
       e.printStackTrace();
     }
   }
+
+  public void update(Pessoa pessoa) {
+    try {
+      this.pst = this.conn.prepareStatement(
+        "UPDATE pessoas SET nome = ? WHERE id = ? AND is_professor = ?");
+      this.pst.setString(1, pessoa.getNome());
+      this.pst.setInt(2, pessoa.getId());
+      this.pst.setBoolean(3, pessoa.isProfessor());
+      this.pst.setMaxRows(1);
+      int rowsAffected = this.pst.executeUpdate();
+      if(rowsAffected > 0) {
+        System.out.println("Atualizado com sucesso!");
+      } else {
+        System.out.println("ID não encontrado!");
+      }
+      this.pst.close();
+      this.conn.close();
+    } catch (SQLException e) {
+      System.err.println("PessoaModel::update SQLException");
+      System.err.println(e.getMessage());
+    } catch (Exception e) {
+      System.err.println("PessoaModel::update Exception");
+      e.printStackTrace();
+    }
+  }
 }

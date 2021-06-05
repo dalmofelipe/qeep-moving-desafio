@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Terminal {
+
+  public static Scanner teclado = new Scanner(System.in);
   
   public static void clearScreen() {  
     System.out.print("\033[H\033[2J");  
@@ -15,14 +17,14 @@ public class Terminal {
     try { System.in.read(); } catch(Exception e) { }
   }
 
-  public static int getInt(Scanner input) {
+  public static int getInt() {
     int number = 0;
     try {
-      number = input.nextInt();
-      input.nextLine();
+      number = teclado.nextInt();
+      teclado.nextLine();
     } catch (InputMismatchException e) {
       System.out.println("Digite um valor numérico como opção!");
-      input.nextLine();
+      teclado.nextLine();
       // System.out.println(e.getMessage());
       pressEnterToContinue();
     }

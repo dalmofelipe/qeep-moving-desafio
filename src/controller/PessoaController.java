@@ -54,4 +54,15 @@ public class PessoaController {
     }
     Terminal.pressEnterToContinue();
   }
+
+  public static void consultar(String termo) {
+    if(!termo.isEmpty()) {
+      var db = new PessoaModel();
+      System.out.println("\nRESULTADO DA CONSULTA");
+      if(!db.searchName(termo)) System.out.println("Nada encontrado com o termo digitado!");
+    } else {  
+      System.out.println("Preecha um NOME para consultar!");
+    }
+    Terminal.pressEnterToContinue();
+  }
 }

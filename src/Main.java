@@ -124,9 +124,20 @@ public class Main {
                       }
                       break;
                     case 4: 
+                      /*
+                      Ao selecionar consultar, o sistema pedira para digitar o nome do aluno e procederá com 
+                      a consulta no banco de dados pelo nome utilizando LIKE. Após a consulta o sistema exibirá 
+                      os dados do aluno e aguardará o usuário digitar um enter para voltar para a lista de opções.
+                       Caso não exista nenhum aluno com o nome informado, exibir uma mensagem informando o fato.
+                      */
                       System.out.println("\n===== Consultar dados do " + auxEntidade + " =====");
-                      System.out.println("Consultar "); 
-                      Terminal.pressEnterToContinue();
+                      System.out.println("Consulta nome: ");
+                      auxNome = Terminal.teclado.nextLine();
+                      switch(opcaoNivel02) {
+                        case 1: 
+                        case 2: PessoaController.consultar(auxNome); break; 
+                        case 3: DisciplinaController.consultar(auxNome); break;
+                      }                      
                       break;
                     case 5: // listar todos alunos/professores/disciplinas
                       System.out.println("\n===== Listar todos " + auxEntidade + " =====");

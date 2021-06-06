@@ -155,4 +155,32 @@ public class DisciplinaModel extends Model {
     }
     return result;
   }
+
+  public boolean searchName(String termo) {
+    boolean result = false;
+    try {
+      String query = 
+      "SELECT d.id, d.nome, d.carga_horaria, p.nome"
+      +"FROM disciplinas d, pessoas p"
+      +"WHERE d.nome LIKE '%"+termo+"%' AND d.id_pessoa = p.id " ;
+      this.st = this.conn.createStatement();
+      this.rs = this.st.executeQuery(query);
+      while(this.rs.next()) {
+        result = true;
+        Integer id = this.rs.getInt("id");
+        String nome = this.rs.getString("nome");
+        String cpf = this.rs.getString("cpf");
+        System.out.println("ID = " + id + " | Nome = " + nome + " | CPF = " + cpf);
+      }
+      this.rs.close();
+      this.st.close();
+      this.conn.close();
+    } catch (SQLException e) {
+      System.err.println("DisciplinaModel::searchName SQLException");
+    } catch (Exception e) {
+      System.err.println("DisciplinaModel::searchName Exception");
+      e.printStackTrace();
+    }
+    return result;
+  }
 }

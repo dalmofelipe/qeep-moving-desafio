@@ -160,17 +160,18 @@ public class DisciplinaModel extends Model {
     boolean result = false;
     try {
       String query = 
-      "SELECT d.id, d.nome, d.carga_horaria, p.nome"
-      +"FROM disciplinas d, pessoas p"
-      +"WHERE d.nome LIKE '%"+termo+"%' AND d.id_pessoa = p.id " ;
+      "SELECT d.id, d.nome, d.carga_horaria, p.nome as professor"
+      +" FROM disciplinas d, pessoas p"
+      +" WHERE d.nome LIKE '%"+termo+"%' AND d.id_pessoa = p.id AND p.is_professor = true" ;
       this.st = this.conn.createStatement();
       this.rs = this.st.executeQuery(query);
       while(this.rs.next()) {
         result = true;
         Integer id = this.rs.getInt("id");
         String nome = this.rs.getString("nome");
-        String cpf = this.rs.getString("cpf");
-        System.out.println("ID = " + id + " | Nome = " + nome + " | CPF = " + cpf);
+        Integer ch = this.rs.getInt("carga_horaria");
+        String nomeProf = this.rs.getString("professor");
+        System.out.println("ID = " + id + " | Nome = " + nome + " | Carga Horaria = " + ch + " | Professor = " + nomeProf);
       }
       this.rs.close();
       this.st.close();

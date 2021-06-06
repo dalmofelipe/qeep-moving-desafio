@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS matriculas (
 
 /*    SEEDS     */
 INSERT INTO pessoas (nome, cpf, is_professor) VALUES 
-('marlom brando', '32165498700', true), 
 ('Dalmo Felipe', '11122233344', false), 
 ('Felipe Torres', '22233344455', false), 
 ('Torres Paula', '33344455566', false),
@@ -50,7 +49,7 @@ INSERT INTO matriculas (id_disciplina, id_pessoa) VALUES
 (6221, 2),
 (8321, 3);
 
--- 
+
 SELECT * FROM pessoas
 SELECT * FROM pessoas WHERE is_professor = false
 SELECT * FROM pessoas WHERE is_professor = true
@@ -59,6 +58,8 @@ SELECT * FROM matriculas
 
 -- removendo aluno
 DELETE FROM pessoas WHERE id = 3 AND is_professor = false
+-- removendo professores
 DELETE FROM pessoas WHERE id = 7 AND is_professor = true
+
 DELETE FROM disciplinas WHERE id = 8321
 DELETE FROM pessoas WHERE id = 3 

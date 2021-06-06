@@ -135,7 +135,10 @@ public class Main {
                       auxNome = Terminal.teclado.nextLine();
                       switch(opcaoNivel02) {
                         case 1: 
-                        case 2: PessoaController.consultar(auxNome); break; 
+                        case 2:
+                          var auxPessoa = opcaoNivel02 == 1 ? new Aluno(null, auxNome, null) : new Professor(null, auxNome, null); 
+                          PessoaController.consultar(auxPessoa); 
+                        break; 
                         case 3: DisciplinaController.consultar(auxNome); break;
                       }                      
                       break;

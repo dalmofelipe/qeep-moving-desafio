@@ -1,5 +1,6 @@
 package models;
 
+import java.beans.beancontext.BeanContext;
 import java.sql.SQLException;
 
 import entidades.Pessoa;
@@ -139,12 +140,14 @@ public class PessoaModel extends Model {
     return result;
   }
 
-  public boolean searchName(String name) {
+  public boolean searchName(String name, Boolean isProfessor) {
     boolean result = false;
     try {
-      String query = "SELECT * FROM pessoas WHERE nome LIKE '%"+name+"%'";
-      this.st = this.conn.createStatement();
-      this.rs = this.st.executeQuery(query);
+      this.pst = this.conn.prepareStatement(
+        "SELECT * FROM pessoas WHERE nome LIKE '%"+name+"%' AND is_professor = ?"
+      );
+      this.pst.setBoolean(1, isProfessor);
+      this.rs = this.pst.executeQuery();
       while(this.rs.next()) {
         result = true;
         Integer id = this.rs.getInt("id");
@@ -153,7 +156,7 @@ public class PessoaModel extends Model {
         System.out.println("ID = " + id + " | Nome = " + nome + " | CPF = " + cpf);
       }
       this.rs.close();
-      this.st.close();
+      this.pst.close();
       this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::delete SQLException");

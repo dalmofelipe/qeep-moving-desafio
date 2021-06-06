@@ -3,6 +3,7 @@ package controller;
 import entidades.Disciplina;
 import models.DisciplinaModel;
 import utils.Terminal;
+import utils.Validacoes;
 
 public class DisciplinaController {
   
@@ -52,18 +53,16 @@ public class DisciplinaController {
       var db = new DisciplinaModel();
       db.delete(d.getId());
     } else {
-      System.out.println("Informe um ID válido!");
+      System.out.println();
     }
     Terminal.pressEnterToContinue();
   }
 
   public static void consultar(String termo) {
-    if(!termo.isEmpty()) {
+    if(Validacoes.stringNoEmpty(termo, "Preecha um NOME para consultar!")) {
       var db = new DisciplinaModel();
       System.out.println("\nRESULTADO DA CONSULTA");
       if(!db.searchName(termo)) System.out.println("Nada encontrado com o termo digitado!");
-    } else {  
-      System.out.println("Preecha um NOME para consultar!");
     }
     Terminal.pressEnterToContinue();
   }

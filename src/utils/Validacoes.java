@@ -32,4 +32,14 @@ public class Validacoes {
 
     return flag;
   }
+
+  public static boolean stringNoEmpty(String str, String msg) {
+    if(!str.isEmpty()) return true; else System.out.println(msg);
+    return false; 
+  }
+
+  public static boolean integerGreatherZero(Integer number, String msg) {
+    if(number > 0) return true; else System.out.println(msg);
+    return false; 
+  }
 }

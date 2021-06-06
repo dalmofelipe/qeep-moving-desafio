@@ -34,7 +34,6 @@ public class PessoaController {
   }
 
   public static void alterar(Pessoa pessoa) {
-
     if(pessoa.getId() > 0 && pessoa.getNome().length() > 0) {
       var db = new PessoaModel();
       db.update(pessoa);
@@ -43,7 +42,16 @@ public class PessoaController {
       System.out.println("ID deve ser um inteiro positivo!");   
       System.out.println("Novo nome não pode ser vazio!");   
     }
+    Terminal.pressEnterToContinue();
+  }
 
+  public static void excluir(Pessoa p) {
+    if(p.getId() > 0 && p.getNome() == null && p.getCPF() == null) {
+      var db = new PessoaModel();
+      db.delete(p.getId(), p.isProfessor());
+    } else {  
+      System.out.println("ID deve ser um inteiro positivo!");   
+    }
     Terminal.pressEnterToContinue();
   }
 }

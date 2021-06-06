@@ -89,7 +89,7 @@ public class Main {
                       var auxNome = Terminal.teclado.nextLine();
                       switch(opcaoNivel02) {
                         case 1: // alunos
-                        case 2: // professor
+                        case 2: /* ===== ALTERAR ALUNO OU PROFESSOR  ===== */
                           var auxPessoa = opcaoNivel02 == 1 ? new Aluno(auxCodigo, auxNome, null) : new Professor(auxCodigo, auxNome, null);
                           PessoaController.alterar(auxPessoa);
                           break;
@@ -106,12 +106,22 @@ public class Main {
                           DisciplinaController.alterar(auxDisciplina);
                           break;
                       }
-                      Terminal.pressEnterToContinue();
                       break;
-                    case 3: 
+                    case 3: /* ===== OPCAO DISCIPLINA  ===== */
                       System.out.println("\n===== Excluir dados do " + auxEntidade + " =====");
-                      System.out.println("Excluir"); 
-                      Terminal.pressEnterToContinue();
+                      System.out.printf("Infome o codigo do %s: ", auxEntidade);
+                      auxCodigo = Terminal.getInt();
+                      switch(opcaoNivel02) {
+                        case 1: // alunos
+                        case 2: // professor
+                          var auxPessoa = opcaoNivel02 == 1 ? new Aluno(auxCodigo, null, null) : new Professor(auxCodigo, null, null);
+                          PessoaController.excluir(auxPessoa);
+                          break;
+                        case 3: // disciplina
+                          var auxDisciplina = new Disciplina(auxCodigo, null, null, null);
+                          DisciplinaController.excluir(auxDisciplina);
+                          break;
+                      }
                       break;
                     case 4: 
                       System.out.println("\n===== Consultar dados do " + auxEntidade + " =====");

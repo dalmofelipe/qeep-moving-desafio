@@ -46,4 +46,14 @@ public class DisciplinaController {
     }
     Terminal.pressEnterToContinue();
   }
+  
+  public static void excluir(Disciplina d) {
+    if(d.getId() > 0 && d.getNome() == null && d.getCargaHoraria() == null && d.getIdProfessor() == null) {
+      var db = new DisciplinaModel();
+      db.delete(d.getId());
+    } else {
+      System.out.println("Informe um ID válido!");
+    }
+    Terminal.pressEnterToContinue();
+  }
 }

@@ -37,20 +37,20 @@ public class PessoaModel extends Model {
     try {
       String query = "INSERT INTO pessoas (nome, cpf, is_professor)"
         + "VALUES (?, ?, ?)";
-      pst = conn.prepareStatement(query);
-      pst.setString(1, pessoa.getNome()); 
-      pst.setString(2, pessoa.getCPF()); 
-      pst.setBoolean(3, pessoa.isProfessor());
-      int rowsAffected = pst.executeUpdate();
+      this.pst = this.conn.prepareStatement(query);
+      this.pst.setString(1, pessoa.getNome()); 
+      this.pst.setString(2, pessoa.getCPF()); 
+      this.pst.setBoolean(3, pessoa.isProfessor());
+      int rowsAffected = this.pst.executeUpdate();
       if(rowsAffected > 0) {
         System.out.println("Cadastrado com sucesso!");
         return true;
-      } else {
-        System.err.println("CPF já cadastrado!");
       }
+      this.pst.close();
+      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::salvar SQLException");
-      System.err.println(e.getMessage());
+      System.err.println("CPF já cadastrado!");
     } catch (Exception e) {
       System.err.println("PessoaModel::salvar Exception");
       System.err.println(e.getMessage());
@@ -106,5 +106,36 @@ public class PessoaModel extends Model {
       System.err.println("PessoaModel::update Exception");
       e.printStackTrace();
     }
+  }
+
+  public boolean delete(int id, boolean isProfessor) {
+    boolean result = false;
+    String auxEntidade = isProfessor ? "Professor" : "Aluno";
+    String auxEntidade2 = isProfessor ? "disciplina" : "matrícula";
+    try {
+      this.pst = this.conn.prepareStatement(
+        "DELETE FROM pessoas WHERE id = ? AND is_professor = ?"
+      );
+      this.pst.setInt(1, id);
+      this.pst.setBoolean(2, isProfessor);
+      this.pst.setMaxRows(1);
+      int rowsAffected = this.pst.executeUpdate();
+      if (rowsAffected == 1) {
+        result = true; 
+        System.out.println(auxEntidade + " excluido com sucesso!");
+      } else {
+        System.out.printf("Erro ao excluir %s", auxEntidade);
+        System.out.printf("ID não encontrado!");
+      }
+      this.pst.close();
+      this.conn.close();
+    } catch (SQLException e) {
+      System.err.println("PessoaModel::delete SQLException");
+      System.out.printf("Verifique se o %s esta registrado em uma %s!", auxEntidade, auxEntidade2);
+    } catch (Exception e) {
+      System.err.println("PessoaModel::delete Exception");
+      e.printStackTrace();
+    }
+    return result;
   }
 }

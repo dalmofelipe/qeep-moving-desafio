@@ -25,14 +25,20 @@ INSERT INTO pessoas (nome, cpf, is_professor) VALUES
 INSERT INTO pessoas (nome, cpf, is_professor) VALUES 
 ('Prof. Hugo', '66655577788', true);
 
--- selecionando professores
-SELECT * FROM pessoas WHERE is_professor = true;
 
 -- selectionando alunos
 SELECT * FROM pessoas WHERE is_professor = false;
+DELETE FROM pessoas WHERE id = 10 AND is_professor = FALSE;
+DELETE FROM pessoas WHERE cpf = '123.456.789-00' AND is_professor = FALSE;
 
--- excluir professor sem vinculos 
+
+
+-- selecionando professores
+SELECT * FROM pessoas WHERE is_professor = true;
+
 DELETE FROM pessoas WHERE cpf = '123.456.789-00' AND is_professor = TRUE;
+
+DELETE FROM pessoas WHERE id = 1 AND is_professor = TRUE;
 
 -- update em ALUNOS!
 UPDATE pessoas 
@@ -87,12 +93,23 @@ WHERE disciplinas.id = 99
 
 
 SELECT * FROM disciplinas;
+-- não pode ter disciplinas com mesmo nome = disciplina_nome_Key
+INSERT INTO disciplinas (id, nome, carga_horaria, id_pessoa) VALUES 
+(10122, 'FTC', 100, 5)
+-- um disciplinas tem apenas um professor = disciplina_nome_Key
+INSERT INTO disciplinas (id, nome, carga_horaria, id_pessoa) VALUES 
+(10121, 'FTC', 100, 5)
+
+DELETE FROM disciplinas WHERE id = 9121
+
+
+
+
 
 
 
 
 /*    MATRICULAS    */
-
 CREATE TABLE IF NOT EXISTS matriculas (
   id SERIAL,
   id_disciplina INTEGER NOT NULL REFERENCES disciplinas(id),

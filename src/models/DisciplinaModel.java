@@ -55,14 +55,17 @@ public class DisciplinaModel extends Model {
         System.out.println("Disciplina Cadastrada com sucesso!");
         result = true; 
       } else {
-        System.out.println("Erro ao salvar Disciplina! Verique os códigos da disciplina e/ou do professor!");
+        System.out.println("Erro ao salvar Disciplina! Verique os códigos do professor!");
       }
       this.pst.close();
       this.conn.close();
     } catch (SQLException e) {
-      System.err.println("DisciplinaModel::salvar SQLException = " + e.getMessage());
+      System.err.println("DisciplinaModel::salvar SQLException");
+      System.err.println("CODIGO informado já esta cadastrado!");
+      System.err.println(e.getMessage());
     } catch (Exception e) {
-      System.err.println("DisciplinaModel::salvar Exception = " + e.getMessage());
+      System.err.println("DisciplinaModel::salvar Exception");
+      System.err.println(e.getMessage());
     }
     return result;
   }
@@ -122,6 +125,32 @@ public class DisciplinaModel extends Model {
       System.err.println(e.getMessage());
     } catch (Exception e) {
       System.err.println("DisciplinaModel::update Exception");
+      System.err.println(e.getMessage());
+    }
+    return result;
+  }
+
+  public boolean delete(Integer id) {
+    boolean result = false;
+    try {
+      this.pst = this.conn.prepareStatement("DELETE FROM disciplinas WHERE id = ?");
+      this.pst.setInt(1, id);
+      this.pst.setMaxRows(1);
+      int rowsAffected = this.pst.executeUpdate();
+      if(rowsAffected == 1) {
+        result = true;
+        System.out.println("Disciplina excluída com sucesso!");
+      } else {
+        System.out.printf("Erro ao excluir disciplina!");
+        System.out.printf("ID não encontrado!");
+      }
+      this.pst.close();
+      this.conn.close();
+    } catch (SQLException e) {
+      System.err.println("DisciplinaModel::delete SQLException");
+      System.out.println("Verifique se a disciplina possui alunos matriculados!");
+    } catch (Exception e) {
+      System.err.println("DisciplinaModel::delete Exception");
       System.err.println(e.getMessage());
     }
     return result;

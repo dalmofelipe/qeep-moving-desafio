@@ -2,20 +2,20 @@ package entidades;
 
 public class Pessoa {
 
-  protected int id;
+  protected Integer id;
   protected String nome;
   protected String cpf;
-  protected boolean isProfessor;
+  protected Boolean isProfessor;
   
-  public boolean isProfessor () {
+  public Boolean isProfessor () {
     return this.isProfessor;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

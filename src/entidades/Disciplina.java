@@ -2,29 +2,23 @@ package entidades;
 
 public class Disciplina {
   
-  private int id;
+  private Integer id;
   private String nome;
-  private int cargaHoraria;
-  private int idProfessor;
-  
-  public Disciplina(String nome, int cargaHoraria, int idProfessor) {
-    this.nome = nome;
-    this.cargaHoraria = cargaHoraria;
-    this.idProfessor = idProfessor;
-  }
+  private Integer cargaHoraria;
+  private Integer idProfessor;
 
-  public Disciplina(int id, String nome, int cargaHoraria, int idProfessor) {
+  public Disciplina(Integer id, String nome, Integer cargaHoraria, Integer idProfessor) {
     this.id = id;
     this.nome = nome;
     this.cargaHoraria = cargaHoraria;
     this.idProfessor = idProfessor;
   }
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -36,19 +30,19 @@ public class Disciplina {
     this.nome = nome;
   }
 
-  public int getCargaHoraria() {
+  public Integer getCargaHoraria() {
     return cargaHoraria;
   }
 
-  public void setCargaHoraria(int cargaHoraria) {
+  public void setCargaHoraria(Integer cargaHoraria) {
     this.cargaHoraria = cargaHoraria;
   }
 
-  public int getIdProfessor() {
+  public Integer getIdProfessor() {
     return idProfessor;
   }
 
-  public void setIdProfessor(int idProfessor) {
+  public void setIdProfessor(Integer idProfessor) {
     this.idProfessor = idProfessor;
   }
 

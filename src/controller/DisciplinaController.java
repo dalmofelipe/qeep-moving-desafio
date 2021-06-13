@@ -6,17 +6,6 @@ import utils.Terminal;
 import utils.Validacoes;
 
 public class DisciplinaController {
-  
-
-  public static boolean pesquisarID(Integer id) {
-    if(id > 0) {
-      var db = new DisciplinaModel();
-      return db.hasID(id);
-    } else {
-      System.out.println("Informe um ID válido!");
-    }
-    return false;
-  }
 
   public static void cadastrar(Disciplina disciplina) {
     var db = new DisciplinaModel();
@@ -31,30 +20,35 @@ public class DisciplinaController {
   }
 
   public static void alterar(Disciplina disciplina) {
-    if(disciplina.getId() > 0) {
-      if(disciplina.getNome().length() > 0) {
-        if(disciplina.getIdProfessor() > 0) {
-          var db = new DisciplinaModel();
-          if(db.update(disciplina)) return;
-        } else {
-          System.out.println("Informe um ID DO PROFESSOR válido!");
-        }
-      } else {
-        System.out.println("O campo NOME não pode ser vazio!");
-      }
-    } else {
-      System.out.println("Informe um ID válido!");
-    }
+
+    boolean validaID1 = Validacoes.integerGreatherZero(disciplina.getId(), "ID DISCIPLINA deve ser um valor positivo!");
+    boolean validaString1 = Validacoes.stringNoEmpty(disciplina.getNome(), "O campo NOME DISCIPLINA não pode ser vazio!");
+    boolean validaID2 = Validacoes.integerGreatherZero(disciplina.getIdProfessor(), "ID PROFESSOR Inválido!");
+
+    if(validaID1 && validaString1 && validaID2) {
+      var db = new DisciplinaModel();
+      if(db.update(disciplina)) {
+        db.closeConn();
+        return;
+      };
+    } 
+    
     Terminal.pressEnterToContinue();
   }
   
   public static void excluir(Disciplina d) {
-    if(d.getId() > 0 && d.getNome() == null && d.getCargaHoraria() == null && d.getIdProfessor() == null) {
+
+    boolean validaID1 = Validacoes.integerGreatherZero(d.getId(), "ID DISCIPLINA Inválido!");
+    boolean validaID2 = Validacoes.integerGreatherZero(d.getIdProfessor(), "ID PROFESSOR Inválido!");
+    boolean validaCH = Validacoes.integerGreatherZero(d.getId(), "CARGA HORÁRIA deve ser um valor positivo!");
+    boolean validaNome = Validacoes.notNull(d.getNome(), "O campo NOME não pode ser vazio!");
+
+    if(validaID1 && validaID2 && validaCH && validaNome) {
       var db = new DisciplinaModel();
       db.delete(d.getId());
-    } else {
-      System.out.println();
+      db.closeConn();
     }
+
     Terminal.pressEnterToContinue();
   }
 
@@ -63,6 +57,7 @@ public class DisciplinaController {
       var db = new DisciplinaModel();
       System.out.println("\nRESULTADO DA CONSULTA");
       if(!db.searchName(termo)) System.out.println("Nada encontrado com o termo digitado!");
+      db.closeConn();
     }
     Terminal.pressEnterToContinue();
   }

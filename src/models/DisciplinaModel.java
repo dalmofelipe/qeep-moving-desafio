@@ -27,7 +27,6 @@ public class DisciplinaModel extends Model {
       }
       this.rs.close();
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::hasID SQLException = " + e.getMessage());
     } catch (Exception e) {
@@ -58,7 +57,6 @@ public class DisciplinaModel extends Model {
         System.out.println("Erro ao salvar Disciplina! Verique os códigos do professor!");
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::salvar SQLException");
       System.err.println("CODIGO informado já esta cadastrado!");
@@ -82,11 +80,10 @@ public class DisciplinaModel extends Model {
         String nome = rs.getString("nome");
         int ch = rs.getInt("carga_horaria");
         String nomeProf = rs.getString("prof_nome");
-        System.out.printf("CODIGO: %d | DISCIPLINA: %s | CARGA HORARIA: %d horas | PROFESSOR: %s\n", id, nome, ch, nomeProf);
+        System.out.printf("CODIGO: %6d | DISCIPLINA: %20s | CARGA HORARIA: %4d horas | PROFESSOR: %-40s\n", id, nome, ch, nomeProf);
       }
       this.rs.close();
       this.st.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::getAll SQLException");
       System.err.println(e.getMessage());
@@ -119,7 +116,6 @@ public class DisciplinaModel extends Model {
         System.out.println("Verifique o se os IDs da disciplina e/ou do professor estão corretos!");
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::update SQLException");
       System.err.println(e.getMessage());
@@ -145,7 +141,6 @@ public class DisciplinaModel extends Model {
         System.out.printf("ID não encontrado!");
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::delete SQLException");
       System.out.println("Verifique se a disciplina possui alunos matriculados!");
@@ -162,7 +157,7 @@ public class DisciplinaModel extends Model {
       String query = 
       "SELECT d.id, d.nome, d.carga_horaria, p.nome as professor"
       +" FROM disciplinas d, pessoas p"
-      +" WHERE d.nome LIKE '%"+termo+"%' AND d.id_pessoa = p.id AND p.is_professor = true" ;
+      +" WHERE d.nome ILIKE '%"+termo+"%' AND d.id_pessoa = p.id AND p.is_professor = true" ;
       this.st = this.conn.createStatement();
       this.rs = this.st.executeQuery(query);
       while(this.rs.next()) {
@@ -171,11 +166,10 @@ public class DisciplinaModel extends Model {
         String nome = this.rs.getString("nome");
         Integer ch = this.rs.getInt("carga_horaria");
         String nomeProf = this.rs.getString("professor");
-        System.out.println("ID = " + id + " | Nome = " + nome + " | Carga Horaria = " + ch + " | Professor = " + nomeProf);
+        System.out.printf("CODIGO: %6d | DISCIPLINA: %20s | CARGA HORARIA: %4d horas | PROFESSOR: %-40s\n", id, nome, ch, nomeProf);
       }
       this.rs.close();
       this.st.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("DisciplinaModel::searchName SQLException");
     } catch (Exception e) {

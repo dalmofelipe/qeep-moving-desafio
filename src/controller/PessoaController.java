@@ -17,12 +17,12 @@ public class PessoaController {
         db.salvar(pessoa);
       } else {
         System.out.println("CPF já Cadastrado!");
-        Terminal.pressEnterToContinue();
       }
+      db.closeConn();
     } else {
       System.out.println("CPF Inválido, digite o CPF com ponto e traço!");
-      Terminal.pressEnterToContinue();
     }
+    Terminal.pressEnterToContinue();
   }
 
   public static void listar(int entidade) {

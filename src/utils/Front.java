@@ -14,7 +14,7 @@ public class Front {
   }
 
   public static void menuPrincipal() {
-    System.out.println("Menu Principal\n");
+    System.out.println("\nMenu Principal\n");
     System.out.println("1 - Cadastros");
     System.out.println("2 - Matricula");
     System.out.println("3 - Relatorios");
@@ -34,7 +34,7 @@ public class Front {
 
   public static void menuCadastrosEntidades(String entidade) {
     System.out.println("\n--------------------------------------------------------------------------------\n");
-    System.out.printf("Menu Cadastro de %s\n", entidade);
+    System.out.printf("Menu Cadastro de %s\n\n", entidade);
     System.out.println("1 - Cadastrar");
     System.out.println("2 - Alterar");
     System.out.println("3 - Excluir");
@@ -44,4 +44,15 @@ public class Front {
     System.out.print("\n\nDigite a opção desejada: ");
   }
   
+  public static void menuMatriculas() {
+    System.out.println("\n--------------------------------------------------------------------------------\n");
+    System.out.println("Menu Matricula\n");
+    System.out.println("1 - Cadastrar");
+    System.out.println("2 - Remover");
+    System.out.println("3 - Alunos de uma Disciplina");
+    System.out.println("4 - Disciplinas de um Aluno");
+    System.out.println("5 - Menu Anterior");
+    System.out.print("\n\nDigite a opção desejada: ");
+  }
+
 }

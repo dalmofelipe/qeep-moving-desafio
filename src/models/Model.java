@@ -16,7 +16,15 @@ public class Model {
 
   public Model() {
     var pg = new PostgreConnection("postgres", "12345678");
-    this.conn = pg.connect();
+    this.conn = pg.getConnection();
+  }
+
+  public void closeConn() {
+    try {
+      this.conn.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 
 }

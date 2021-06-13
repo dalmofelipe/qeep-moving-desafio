@@ -1,4 +1,5 @@
 import controller.DisciplinaController;
+import controller.MatriculaController;
 import controller.PessoaController;
 import entidades.Aluno;
 import entidades.Disciplina;
@@ -162,20 +163,56 @@ public class Main {
           break;
         case 2: 
           // MENU DE MATRÍCULAS
-          System.out.println("Matrículas");
+          while(true) {
+            Terminal.clearScreen();
+            Front.menuMatriculas();
+            var opcaoNivel02 = Terminal.getInt();
+            switch(opcaoNivel02) {
+              case 1: 
+                System.out.println("\n===== Matricular Aluno =====");
+                System.out.println("Código da disciplina: ");
+                int auxCodigoDisciplina = Terminal.getInt();
+                System.out.println("Código do aluno: ");
+                int auxCodigoAluno = Terminal.getInt();
+                MatriculaController.matricularAluno(auxCodigoDisciplina, auxCodigoAluno);
+              break;
+
+              case 2: 
+                System.out.println("\n===== Excluir Matricula de Aluno =====");
+                System.out.println("Código da Disciplina: ");
+                auxCodigoDisciplina = Terminal.getInt();
+                System.out.println("Código do Aluno");
+                auxCodigoAluno = Terminal.getInt();
+                MatriculaController.removerMatricula(auxCodigoDisciplina, auxCodigoAluno);
+              break;
+              
+              case 3:
+                System.out.println("\n===== Listar Alunos de uma Disciplina ====="); 
+                System.out.println("Código da Disciplina: ");
+                auxCodigoDisciplina = Terminal.getInt();
+                MatriculaController.listarAlunosDisciplina(auxCodigoDisciplina);
+              break;
+
+              case 4: 
+                System.out.println("\n===== Listar Disciplinas de um Aluno ====="); 
+                System.out.println("Código do Aluno: ");
+                auxCodigoAluno = Terminal.getInt();
+                MatriculaController.listarDisciplinasAluno(auxCodigoAluno);
+              break;
+            }
+            if(opcaoNivel02 == 5) break; 
+          }
           break;
         case 3: 
           // MENU DE RELATÓRIOS
           System.out.println("Relatórios");
           break;
-        case 4: break; 
       }
 
 
       if(opcaoNivel01 == 4) break; 
     }
-    System.out.println("Programa Finalizado!");
-    System.out.println("");
+    System.out.println("Programa Finalizado!\n");
     Terminal.teclado.close();
   }
 }

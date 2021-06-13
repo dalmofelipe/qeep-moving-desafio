@@ -1,6 +1,5 @@
 package models;
 
-import java.beans.beancontext.BeanContext;
 import java.sql.SQLException;
 
 import entidades.Pessoa;
@@ -36,7 +35,7 @@ public class PessoaModel extends Model {
 
   public boolean salvar(Pessoa pessoa) {
     try {
-      String query = "INSERT INTO pessoas (nome, cpf, is_professor)"
+      String query = "INSERT INTO pessoas (nome, cpf, is_professor) "
         + "VALUES (?, ?, ?)";
       this.pst = this.conn.prepareStatement(query);
       this.pst.setString(1, pessoa.getNome()); 
@@ -48,10 +47,10 @@ public class PessoaModel extends Model {
         return true;
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::salvar SQLException");
       System.err.println("CPF já cadastrado!");
+      System.err.println(e.getMessage());
     } catch (Exception e) {
       System.err.println("PessoaModel::salvar Exception");
       System.err.println(e.getMessage());
@@ -70,11 +69,10 @@ public class PessoaModel extends Model {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");
         String cpf = rs.getString("cpf");
-        System.out.printf("CODIGO: %d | %s: %s | CPF: %s\n", id, entidade, nome, cpf);
+        System.out.printf("CODIGO: %4d | %s: %-40s | CPF: %11s\n", id, entidade, nome, cpf);
       }
       this.rs.close();
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::getAll SQLException");
       System.err.println(e.getMessage());
@@ -99,7 +97,6 @@ public class PessoaModel extends Model {
         System.out.println("ID não encontrado!");
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::update SQLException");
       System.err.println(e.getMessage());
@@ -129,7 +126,6 @@ public class PessoaModel extends Model {
         System.out.printf("ID não encontrado!");
       }
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::delete SQLException");
       System.out.printf("Verifique se o %s esta registrado em uma %s!", auxEntidade, auxEntidade2);
@@ -153,11 +149,10 @@ public class PessoaModel extends Model {
         Integer id = this.rs.getInt("id");
         String nome = this.rs.getString("nome");
         String cpf = this.rs.getString("cpf");
-        System.out.println("ID = " + id + " | Nome = " + nome + " | CPF = " + cpf);
+        System.out.printf("CODIGO: %4d | NOME: %-40s | CPF: %11s\n", id, nome, cpf);
       }
       this.rs.close();
       this.pst.close();
-      this.conn.close();
     } catch (SQLException e) {
       System.err.println("PessoaModel::delete SQLException");
     } catch (Exception e) {

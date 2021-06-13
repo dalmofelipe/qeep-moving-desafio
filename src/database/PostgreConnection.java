@@ -24,7 +24,7 @@ public class PostgreConnection {
     this.pgUrl += database;
   }
 
-  public Connection connect() {
+  public Connection getConnection() {
     if(this.loadDriverJDbC()) {
       try {
         var props = new Properties();

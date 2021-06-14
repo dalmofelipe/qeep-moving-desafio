@@ -23,7 +23,7 @@ public class Terminal {
       number = teclado.nextInt();
       teclado.nextLine();
     } catch (InputMismatchException e) {
-      System.out.println("Digite um valor numérico como opção!");
+      System.out.println("Digite um valor inteiro positivo como opção!");
       teclado.nextLine();
       // System.out.println(e.getMessage());
       pressEnterToContinue();

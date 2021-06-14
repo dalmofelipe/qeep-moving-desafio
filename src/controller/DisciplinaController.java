@@ -40,7 +40,7 @@ public class DisciplinaController {
 
     boolean validaID1 = Validacoes.integerGreatherZero(d.getId(), "ID DISCIPLINA Inválido!");
     boolean validaID2 = Validacoes.integerGreatherZero(d.getIdProfessor(), "ID PROFESSOR Inválido!");
-    boolean validaCH = Validacoes.integerGreatherZero(d.getId(), "CARGA HORÁRIA deve ser um valor positivo!");
+    boolean validaCH = Validacoes.integerGreatherZero(d.getCargaHoraria(), "CARGA HORÁRIA deve ser um valor positivo!");
     boolean validaNome = Validacoes.notNull(d.getNome(), "O campo NOME não pode ser vazio!");
 
     if(validaID1 && validaID2 && validaCH && validaNome) {

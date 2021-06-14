@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS pessoas CASCADE;
-DROP TABLE IF EXISTS disciplinas  CASCADE;
+DROP TABLE IF EXISTS pessoas CASCADE
+DROP TABLE IF EXISTS disciplinas  CASCADE
 DROP TABLE IF EXISTS matriculas  CASCADE;
 /*    PESSOA    */
 CREATE TABLE IF NOT EXISTS pessoas (
@@ -55,15 +55,15 @@ SELECT * FROM pessoas WHERE is_professor = false
 SELECT * FROM pessoas WHERE is_professor = true
 SELECT * FROM disciplinas
 SELECT *
-FROM matriculas
+FROM matriculas;
 
 -- removendo aluno
-DELETE FROM pessoas WHERE id = 3 AND is_professor = false
+DELETE FROM pessoas WHERE id = 3 AND is_professor = false;
 -- removendo professores
-DELETE FROM pessoas WHERE id = 7 AND is_professor = true
+DELETE FROM pessoas WHERE id = 7 AND is_professor = true;
 
-DELETE FROM disciplinas WHERE id = 8321
-DELETE FROM pessoas WHERE id = 3 
+DELETE FROM disciplinas WHERE id = 8321;
+DELETE FROM pessoas WHERE id = 3 ;
 
 
 -- matricular de alunos
@@ -73,18 +73,18 @@ FROM pessoas p
 WHERE p.id = 10 AND is_professor = FALSE));
 
 -- remover matricula
-DELETE FROM matriculas WHERE id_disciplina = 8321 AND id_pessoa = 3
+DELETE FROM matriculas WHERE id_disciplina = 8321 AND id_pessoa = 3;
 
 -- Alunos de uma disciplina
 SELECT p.nome AS aluno, d.nome AS disciplina, d.id AS codigo
 FROM pessoas p, disciplinas d, matriculas m 
 WHERE d.id = 10121 
-AND m.id_pessoa = p.id AND m.id_disciplina = d.id
+AND m.id_pessoa = p.id AND m.id_disciplina = d.id;
 
 
 -- Disciplinas de um Aluno!
 SELECT p.nome AS aluno, d.nome AS disciplina, d.id AS codigo
 FROM pessoas p, disciplinas d, matriculas m 
 WHERE p.id = 3
-AND m.id_pessoa = p.id AND m.id_disciplina = d.id
+AND m.id_pessoa = p.id AND m.id_disciplina = d.id;
 
